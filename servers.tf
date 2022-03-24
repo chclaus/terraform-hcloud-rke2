@@ -8,7 +8,7 @@ resource "hcloud_ssh_key" "root" {
 resource "hcloud_server" "controlplane" {
   count       = var.num_controlplane
   name        = "controlplane-${random_pet.cluster_name.id}-${count.index}"
-  image       = "fedora-32"
+  image       = "fedora-35"
   server_type = "cx11"
   ssh_keys    = [hcloud_ssh_key.root.name]
   location    = "nbg1"
@@ -38,7 +38,7 @@ output "controlplane_ipv6s" {
 resource "hcloud_server" "worker" {
   count       = var.num_workers
   name        = "worker-${random_pet.cluster_name.id}-${count.index}"
-  image       = "fedora-32"
+  image       = "fedora-35"
   server_type = "cx11"
   ssh_keys    = [hcloud_ssh_key.root.name]
   location    = "nbg1"
